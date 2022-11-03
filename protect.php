@@ -3,7 +3,7 @@
         session_start();
     }
     if(!isset($_SESSION['id'])){
-        die("Você não pode acessar esta página pois não está logado. <p> <a href=\"index.php\">Entrar</a></p> " ) ;
+        die("Você não pode acessar esta página pois não está logado. <p> <a href=\"index.php\">Entrar</a></p> ") ;
     }
 
 

@@ -1,0 +1,19 @@
+*root{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    color: #ffffff;
+    background-color: #000000;
+    margin-top: 200px;
+}
+
+.form {
+    display:flexbox;
+    justify-content:center;
+    width:400px;
+    text-align:center;
+    padding:0;    
+    margin:auto;
+}
