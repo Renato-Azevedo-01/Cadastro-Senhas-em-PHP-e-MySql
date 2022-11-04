@@ -1,0 +1,18 @@
+{
+    "name": "usuario/backend",
+    "autoload": {
+        "psr-4": {
+            "app\\": "app"
+        }
+    },
+    "authors": [
+        {
+            "name": "Renato Azevedo",
+            "email": "renato.azevedo0001@gmail.com"
+        }
+    ],
+    "require": {
+        "firebase/php-jwt": "^6.3",
+        "vlucas/phpdotenv": "^5.5"
+    }
+}

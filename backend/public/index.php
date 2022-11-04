@@ -1,5 +1,11 @@
 <?php
-include "module/conexao.php";
+require '../vendor/autoload.php';
+require_once "conexao.php";
+use Firebase\JWT\JWT;
+header("Access-Control-Allow-Origin: *");
+$dotenv=Dotenv\Dotenv::createImmutable(dirname(__FILE__,2)); #colocando o .env na raiz do backend ==> (correto !!!) 
+#$dotenv=Dotenv\Dotenv::createImmutable(__DIR__); #colocando o .env na pasta public (errado !!!)
+$dotenv->load();
 
 if(isset($_POST['email']) || isset($_POST['senha'])){
     if(strlen($_POST['email'])== 0){
@@ -22,14 +28,26 @@ if(isset($_POST['email']) || isset($_POST['senha'])){
             $usuario = mysqli_fetch_assoc($sql_query);
             #$usuario = $sql_query->fetch_assoc();
             if(password_verify($senha,$usuario['senha'])){
+                
+                $payload = [
+                    "exp" => time() + 10,
+                    "iat" => time(),
+                    "email" => $usuario['email']
+                ];
+
+                $jwt = JWT::encode($payload, $_ENV['KEY'], 'HS256');
+                
                 if(!isset($_SESSION)){
                     session_start();
                 }
                 $_SESSION['id'] = $usuario['id'];
                 $_SESSION['nome'] = $usuario['nome'];
                 $_SESSION['email'] = $usuario['email'];
+                $_SESSION['encode'] = $jwt;
+                
+                
+                header('Location: auth.php');
 
-                header('Location: painel.php');
             }
             else{
                 echo "Senha incorreta !";
@@ -65,8 +83,7 @@ if(isset($_POST['email']) || isset($_POST['senha'])){
             <label for id="senha">Senha </label>
             <input type="text" id = "senha" name = "senha" placeholder="Digite sua senha">
             <br><br>
-            <button type="submit" >Entrar</button>
-
+            <button type="submit" >Entrar</button><br><br>
         </fieldset>
     </form>
 </body>
