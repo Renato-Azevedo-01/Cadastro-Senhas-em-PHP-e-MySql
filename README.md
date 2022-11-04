@@ -1,4 +1,4 @@
-# Cadastro Senhas em PHP e MySql, Login com verificação de senha (MySql & JWT) para entrar na página painel.php
+# Cadastro Senhas em PHP, MySql & JWT, Login com verificação de senha para entrar na página painel.php
  __Cuidados ao gravar senhas no BD e Bloqueio de acesso a páginas sem permissão (MySql & JWT)__
 * É necessário criar um Banco de dados no MySql (ou o que preferir) para que a conexão seja feita.
 * O arquivo é o conexão.php sendo necessário 4 itens para o acesso:
